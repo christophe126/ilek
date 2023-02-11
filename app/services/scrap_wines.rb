@@ -38,7 +38,7 @@ end
 
 def scrape_wine_page(url, price)
   doc = Nokogiri::HTML.parse(URI.parse(url).open('Accept-Language' => 'fr-FR', 'User-Agent' => USER_AGENT).read)
-
+  output = {}
   # if Expert review
   unless doc.search('c-product-notations__experts__wrapper').nil?
 
@@ -52,43 +52,44 @@ def scrape_wine_page(url, price)
       wine_description << element.text
     end
     # Output Hash for wine
-    {
-      wine_id: url.split('-')[-4].to_i,
-      name: doc.search('h1').text.strip,
-      price: price,
-      available: doc.search('.stock').last.text,
-      domaine: doc.search('.c-product-characteristics__text')[0].text,
-      country: doc.search('.c-product-characteristics__text')[1].text,
-      location: doc.search('.c-product-characteristics__text')[2].text,
-      color: doc.search('.c-product-characteristics__text')[3].text,
-      year: doc.search('.c-product-characteristics__text')[4].text,
-      appellation: doc.search('.c-product-characteristics__text')[5].text,
-      wine_description: wine_description,
-      notes_avis_expert: notes_avis_expert,
-      wine_url: url
-    }
-  end
-
-  def remove_accents(str)
-    accents = {
-      ['á','à','â','ä','ã','Ã','Ä','Â','À'] => 'a',
-      ['é','è','ê','ë','Ë','É','È','Ê'] => 'e',
-      ['í','ì','î','ï','Î','Ì'] => 'i',
-      ['ó','ò','ô','ö','õ','Õ','Ö','Ô','Ò','Ó'] => 'o',
-      ['ú','ù','û','ü','Ú','Û','Ù','Ü'] => 'u',
-      ['ç','Ç'] => 'c',
-      ['ñ','Ñ'] => 'n'
-    }
-    accents.each do |ac, rep|
-      ac.each do |s|
-        str = str.gsub(s, rep)
+    output['wine_id'.to_sym] = url.split('-')[-4].to_i
+    output['name'.to_sym] = doc.search('h1').text.strip
+    output['price'.to_sym] = price
+    output['available'.to_sym] = doc.search('.stock').last.text
+    output['wine_description'.to_sym] = wine_description
+    output['notes_avis_expert'.to_sym] = notes_avis_expert
+    output['wine_url'.to_sym] = url
+    output['wine_img'.to_sym] = "https://static2.wineandco.com/themes/wineandco/images/produits/#{url.split('-')[-4].chars.join('/')[0...-1]}grd#{url.split('-')[-4]}.jpg"
+    # Wine characteristic
+    doc.search('div.l-product__characteristics > div > div > div').each do |elements|
+      elements.search('li').each do |element|
+        label = element.search('p span.c-product-characteristics__label').first.text.strip
+        val = element.search('p span.c-product-characteristics__text').last.text.strip
+        output[remove_accents(label)] = val
       end
     end
-    str = str.gsub(/[^a-zA-Z0-9\. ]/,"")
-    str = str.gsub(/[ ]+/," ")
-    str = str.gsub(/ /,"-")
-    str = str.downcase
-    str = str.to_sym
+    output
   end
+end
 
+def remove_accents(str)
+  accents = {
+    ['á','à','â','ä','ã','Ã','Ä','Â','À'] => 'a',
+    ['é','è','ê','ë','Ë','É','È','Ê'] => 'e',
+    ['í','ì','î','ï','Î','Ì'] => 'i',
+    ['ó','ò','ô','ö','õ','Õ','Ö','Ô','Ò','Ó'] => 'o',
+    ['ú','ù','û','ü','Ú','Û','Ù','Ü'] => 'u',
+    ['ç','Ç'] => 'c',
+    ['ñ','Ñ'] => 'n'
+  }
+  accents.each do |ac, rep|
+    ac.each do |s|
+      str = str.gsub(s, rep)
+    end
+  end
+  str = str.gsub(/[^a-zA-Z0-9\. ]/,"")
+  str = str.gsub(/[ ]+/," ")
+  str = str.gsub(/ /,"_")
+  str = str.downcase
+  str = str.to_sym
 end
