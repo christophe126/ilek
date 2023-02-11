@@ -19,7 +19,7 @@ unless number_of_pages.zero?
     puts "Urls on Page #{page}/#{number_of_pages} scrapped"
   end
 
-  puts "#{urls_scrap_on_pages.count} Urls scrapped"
+  puts "Wines scrapping in progress..."
 
   datas = []
   urls_scrap_on_pages.each do |values|
