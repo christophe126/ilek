@@ -18,13 +18,13 @@ unless number_of_pages.zero?
     urls_scrap_on_pages << fetch_wines_urls(page)
     puts "Urls on Page #{page}/#{number_of_pages} scrapped"
   end
-  #urls_scrap_on_pages.flatten!
-  puts "#{urls_scrap_on_pages.count / 2} Urls scrapped"
+
+  puts "#{urls_scrap_on_pages.count} Urls scrapped"
 
   datas = []
   urls_scrap_on_pages.each do |values|
     values.each do |value|
-      datas << scrape_wine_page(value)
+      datas << scrape_wine_page(value[0], value[1])
     end
   end
   p datas
