@@ -1,8 +1,9 @@
 class CreateWines < ActiveRecord::Migration[7.0]
   def change
     create_table :wines do |t|
-      t.string :name
+      t.string :name, index: true, null: false
       t.integer :sku_id
+      t.integer :rating, null: false, index: true
       t.string :available
       t.text :wine_description
       t.string :wine_url
@@ -10,10 +11,10 @@ class CreateWines < ActiveRecord::Migration[7.0]
       t.string :wine_img_small
       t.string :domaine
       t.string :pays
-      t.string :region
+      t.string :region, index: true
       t.string :couleur
-      t.integer :millesime
-      t.string :appellation
+      t.integer :millesime, index: true
+      t.string :appellation, index: true
       t.string :culture
       t.string :cepages
       t.string :degre_dalcool
