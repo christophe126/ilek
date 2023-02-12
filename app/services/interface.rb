@@ -19,12 +19,12 @@ unless number_of_pages.zero?
     puts "Urls on Page #{page}/#{number_of_pages} scrapped"
   end
 
-  puts "Wines scrapping in progress..."
+  puts 'Wines scrapping in progress...'
 
   datas = []
   urls_scrap_on_pages.each do |values|
     values.each do |value|
-      datas << scrape_wine_page(value[0], value[1])
+      datas << scrape_wine_page(value[0], value[1], value[2])
     end
   end
   p datas

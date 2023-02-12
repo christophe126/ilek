@@ -1,0 +1,41 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  sku_id: 1
+  available: MyString
+  wine_description: MyText
+  wine_url: MyString
+  wine_img: MyString
+  wine_img_small: MyString
+  domaine: MyString
+  pays: MyString
+  region: MyString
+  couleur: MyString
+  millesime: 1
+  appellation: MyString
+  culture: MyString
+  cepages: MyString
+  degre_dalcool: MyString
+  temperature_de_service: MyString
+  boire_ou_garder: MyString
+
+two:
+  name: MyString
+  sku_id: 1
+  available: MyString
+  wine_description: MyText
+  wine_url: MyString
+  wine_img: MyString
+  wine_img_small: MyString
+  domaine: MyString
+  pays: MyString
+  region: MyString
+  couleur: MyString
+  millesime: 1
+  appellation: MyString
+  culture: MyString
+  cepages: MyString
+  degre_dalcool: MyString
+  temperature_de_service: MyString
+  boire_ou_garder: MyString

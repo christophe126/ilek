@@ -31,45 +31,64 @@ def fetch_wines_urls(page)
   wines.each do |wine|
     price = wine.search('span.price').text.split[0]
     uri = URI.parse(wine.attributes['href'].value)
-    array_with_url_price << [uri.to_s, price]
+    img_small = wine.search('div > div > img')[0].attributes['src'].value
+    array_with_url_price << [uri.to_s, price, img_small]
   end
   array_with_url_price
 end
 
-def scrape_wine_page(url, price)
-  doc = Nokogiri::HTML.parse(URI.parse(url).open('Accept-Language' => 'fr-FR', 'User-Agent' => USER_AGENT).read)
-  output = {}
-  # if Expert review
-  unless doc.search('c-product-notations__experts__wrapper').nil?
+def scrape_wine_page(url, price, img_small)
+  unless price.nil?
 
-    notes_avis_expert = []
-    doc.search('.c-product-notations__experts__item').each do |element|
-      notes_avis_expert << element.search('.c-product-notation-expert__note').text
-    end
-    # Wine Description
-    wine_description = []
-    doc.search('.l-product__description .c-product-description p').each do |element|
-      wine_description << element.text
-    end
-    # Output Hash for wine
-    output['wine_id'.to_sym] = url.split('-')[-4].to_i
-    output['name'.to_sym] = doc.search('h1').text.strip
-    output['price'.to_sym] = price
-    output['available'.to_sym] = doc.search('.stock').last.text
-    output['wine_description'.to_sym] = wine_description
-    output['notes_avis_expert'.to_sym] = notes_avis_expert
-    output['wine_url'.to_sym] = url
-    output['wine_img'.to_sym] = "https://static2.wineandco.com/themes/wineandco/images/produits/#{url.split('-')[-4].chars.join('/')[0...-1]}grd#{url.split('-')[-4]}.jpg"
-    # Wine characteristic
-    doc.search('div.l-product__characteristics > div > div > div').each do |elements|
-      elements.search('li').each do |element|
-        label = element.search('p span.c-product-characteristics__label').first.text.strip
-        val = element.search('p span.c-product-characteristics__text').last.text.strip
-        output[remove_accents(label)] = val
+    doc = Nokogiri::HTML.parse(URI.parse(url).open('Accept-Language' => 'fr-FR', 'User-Agent' => USER_AGENT).read)
+    # if Expert review
+    unless doc.search('c-product-notations__experts__wrapper').nil?
+      output = {}
+
+      notes_avis_expert = []
+      doc.search('.c-product-notations__experts__item').each do |element|
+        notes_avis_expert << element.search('.c-product-notation-expert__note').text
       end
+      # Wine Description
+      wine_description = []
+      doc.search('.l-product__description .c-product-description p').each do |element|
+        wine_description << element.text
+      end
+      # Output Hash for wine
+      output['sku_id'.to_sym] = url.split('-')[-4].to_i
+      output['name'.to_sym] = doc.search('h1').text.strip
+      output['price'.to_sym] = price
+      output['available'.to_sym] = doc.search('.stock').last.text
+      output['wine_description'.to_sym] = wine_description
+      output['notes_avis_expert'.to_sym] = notes_avis_expert
+      output['wine_url'.to_sym] = url
+      output['wine_img'.to_sym] = "https://static2.wineandco.com/themes/wineandco/images/produits/#{url.split('-')[-4].chars.join('/')[0...-1]}grd#{url.split('-')[-4]}.jpg"
+      output['wine_img_small'.to_sym] = img_small
+      # Wine characteristic
+      doc.search('div.l-product__characteristics > div > div > div').each do |elements|
+        elements.search('li').each do |element|
+          label = element.search('p span.c-product-characteristics__label').first.text.strip
+          val = element.search('p span.c-product-characteristics__text').last.text.strip
+          output[remove_accents(label)] = val
+        end
+      end
+      output
     end
-    output
   end
+end
+
+def rating_average(notes)
+  # ["16/20", "92/100", "89/100", "92/100", "92/100"]
+  nb_notes = notes.count
+  n = 0
+  notes.each do |note|
+    if note.split('/')[1].to_i != 100
+      n += (note.split('/')[0].to_i * 100) / note.split('/')[1].to_i
+    else
+      n += note.split('/')[0].to_i
+    end
+  end
+  n / nb_notes
 end
 
 def remove_accents(str)
