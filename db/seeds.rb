@@ -12,7 +12,7 @@ unless number_of_pages.zero?
   urls_scrap_on_pages = []
   puts 'Fetching Wines URLs'
   # (1..number_of_pages).to_a.each do |page|
-  (1..1).to_a.each do |page|
+  (1..2).to_a.each do |page|
     urls_scrap_on_pages << ScrapWine.new.fetch_wines_urls(page)
     puts "Urls on Page #{page}/#{number_of_pages} scrapped"
   end

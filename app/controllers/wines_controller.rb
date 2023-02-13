@@ -1,6 +1,6 @@
 class WinesController < ApplicationController
   def index
-    @wines = Wine.all
+    @wines = Wine.order(rating: :desc)
   end
 
   def show

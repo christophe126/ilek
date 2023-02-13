@@ -3,14 +3,14 @@ require 'nokogiri'
 require 'uri'
 
 class ScrapWine
-# https://www.wineandco.com/search?pageNumber=1&filters[color][5]=5&filters[note][bettane]=bettane&filters[note][decanter]=decanter&filters[note][rvf]=rvf&filters[note][parker]=parker&filters[note][winespec]=winespec
+ # https://www.wineandco.com/search?pageNumber=1&filters[color][5]=5&filters[note][bettane]=bettane&filters[note][decanter]=decanter&filters[note][rvf]=rvf&filters[note][parker]=parker&filters[note][winespec]=winespec
 
   USER_AGENT    = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36'
   URL           = 'https://www.wineandco.com/search?'
   FILTER_PAGE   = 'pageNumber='
   # FILTER_COLOR  = '&filters[color][6]=6&filters[color][10]=10&filters[color][5]=5&filters[color][1]=1'
   # filtre Rosé
-  FILTER_COLOR  = '&filters[color][5]=5'
+  FILTER_COLOR  = '&filters[color][1]=1'
   FILTER_NOTES  = '&filters[note][bettane]=bettane&filters[note][decanter]=decanter&filters[note][rvf]=rvf&filters[note][parker]=parker&filters[note][winespec]=winespec'
 
   def url_document(page_number = 1)
@@ -56,10 +56,11 @@ class ScrapWine
         # Output Hash for wine
         output['sku_id'.to_sym] = url.split('-')[-4].to_i
         output['name'.to_sym] = doc.search('h1').text.strip
-        output['price'.to_sym] = price.to_i * 100
+        output['price'.to_sym] = price.to_i
         output['available'.to_sym] = doc.search('.stock').last.text
         output['wine_description'.to_sym] = wine_description.to_s
-        output['rating'.to_sym] = rating_average(notes_avis_expert)
+        # output['rating'.to_sym] = rating_average(notes_avis_expert)
+        output['rating'.to_sym] = notes_avis_expert
         output['wine_url'.to_sym] = url
         output['wine_img'.to_sym] = "https://static2.wineandco.com/themes/wineandco/images/produits/#{url.split('-')[-4].chars.join('/')[0...-1]}grd#{url.split('-')[-4]}.jpg"
         output['wine_img_small'.to_sym] = img_small
@@ -78,10 +79,11 @@ class ScrapWine
 
   def rating_average(notes)
     # ["16/20", "92/100", "89/100", "92/100", "92/100"]
+    # ["93/100", "17/20", "93/100", "91-92/100", "94/100", "91/100", "90/100", "78.75/20", "16/20"]
     nb_notes = notes.count
     n = 0
     notes.each do |note|
-      if note.split('/')[1].to_i != 100
+      if note.split('/')[1][0..1].to_i != 100
         n += (note.split('/')[0].to_i * 100) / note.split('/')[1].to_i
       else
         n += note.split('/')[0].to_i

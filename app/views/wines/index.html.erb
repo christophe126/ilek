@@ -1,35 +1,24 @@
 <%= render 'shared/nav_bar' %>
-<section>
-    <section id="hero-search" class="py-4 py-xl-5 hero-search border-bottom_red">
-      <div class="container h-100">
-        <div class="row h-100 my-3">
-          <div
-            class="col-md-10 col-xl-8 text-center d-flex d-sm-flex d-md-flex justify-content-center
-              align-items-center mx-auto justify-content-md-center align-items-md-center justify-content-xl-center">
-              <div class="flex-grow-1 w-100 justify-content-center align-items-center" >
-                <h2 class="text-uppercase fw-bold mb-3">RECHERCHER UN VIN</h2>
-                <div class="d-flex flex-row justify-content-center align-items-center search-container py-2">
-                    <div class="div-search-loupe"><%= image_tag "search.png" %></div>
-                    <div class="flex-grow-1"><input class="search-box" type="text" placeholder="producteur, appellation, millésime" /></div>
-                    <div class="div-bt-submit"><span type="submit"><%= image_tag "bt-search.svg", width:'30px', height:'30px' %></span></div>
-                </div>
-                <%= render 'shared/slider' %>
-              </div>
+
+<section id="hero-search" class="py-4 py-xl-5 hero-search border-bottom_red">
+  <div class="container h-100">
+    <div class="row h-100 my-3">
+      <div
+        class="col-md-10 col-xl-8 text-center d-flex d-sm-flex d-md-flex justify-content-center
+          align-items-center mx-auto justify-content-md-center align-items-md-center justify-content-xl-center">
+          <div class="flex-grow-1 w-100 justify-content-center align-items-center" >
+            <h2 class="text-uppercase fw-bold mb-3">RECHERCHER UN VIN</h2>
+            <div class="d-flex flex-row justify-content-center align-items-center search-container py-2">
+                <div class="div-search-loupe"><%= image_tag "search.png" %></div>
+                <div class="flex-grow-1"><input class="search-box" type="text" placeholder="producteur, appellation, millésime" /></div>
+                <div class="div-bt-submit"><span type="submit"><%= image_tag "bt-search.svg", width:'30px', height:'30px' %></span></div>
+            </div>
+            <%= render 'shared/slider' %>
           </div>
-        </div>
       </div>
-    </section>
+    </div>
+  </div>
 </section>
-
-
-
-
-<h1>Wines#index</h1>
-<p class="test">Find me in app/views/wines/index.html.erb</p>
-
-<H1>Liste des vins</H1>
-<div>
-  <% @wines.each do |wine| %>
-    <p><%= wine.name %></p>
-  <% end %>
-</div>
+<section class="mt-5">
+  <%= render 'shared/tablewine' %>
+</section>
