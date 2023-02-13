@@ -1,0 +1,23 @@
+<div data-controller="slider">
+  <div class="flex-grow-1 w-100 justify-content-center align-items-center mt-2">
+    <div class="price-content">
+      <div>
+        <label>Prix Min</label>
+        <p id="minvalue" data-slider-target="minvalue">1 €</p>
+      </div>
+
+      <div class="range-slider flex-grow-1 mx-5">
+        <input type="range"  class="min-price" value="10" min="0" max="1000" step="10"
+          data-slider-target="input"
+          data-action="change->slider#updatePrice">
+        <input type="range" class="max-price" value="500" min="0" max="1000" step="10"
+          data-slider-target="input"
+          data-action="change->slider#updatePrice">
+      </div>
+      <div>
+        <label>Prix Max</label>
+        <p id="maxvalue" data-slider-target="maxvalue">500 €</p>
+      </div>
+    </div>
+  </div>
+</div>
