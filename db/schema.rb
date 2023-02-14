@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_13_222848) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_14_113156) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -39,6 +39,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_222848) do
     t.integer "price_cents", default: 0, null: false
     t.string "classement"
     t.index ["appellation"], name: "index_wines_on_appellation"
+    t.index ["couleur"], name: "index_wines_on_couleur"
     t.index ["millesime"], name: "index_wines_on_millesime"
     t.index ["name"], name: "index_wines_on_name"
     t.index ["rating"], name: "index_wines_on_rating"
