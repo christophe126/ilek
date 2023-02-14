@@ -19,6 +19,13 @@ class WinesController < ApplicationController
   end
 
   def show
+    @wine = Wine.find(params[:id])
+    @caracteristique = ["domaine", "pays", "region", "couleur", "millesime", "appellation", "culture", "cepages", "degre_dalcool", "temperature_de_service", "boire_ou_garder", "classement" ]
+    @key_val_to_display = []
+    @transform_obj_to_hash = JSON.parse(@wine.to_json)
+    @caracteristique.each do |k|
+      @key_val_to_display << [k.to_s, @transform_obj_to_hash[k]] if JSON.parse(@wine.to_json).key?(k)
+    end
   end
 end
 # price_cents BETWEEN ? AND ?', params[:pxmin].to_i, params[:pxmax].to_i

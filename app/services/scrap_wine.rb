@@ -10,7 +10,7 @@ class ScrapWine
   FILTER_PAGE   = 'pageNumber='
   # FILTER_COLOR  = '&filters[color][6]=6&filters[color][10]=10&filters[color][5]=5&filters[color][1]=1'
   # filtre Rosé
-  FILTER_COLOR  = '&filters[color][1]=1'
+  FILTER_COLOR  = '&filters[color][6]=6'
   FILTER_NOTES  = '&filters[note][bettane]=bettane&filters[note][decanter]=decanter&filters[note][rvf]=rvf&filters[note][parker]=parker&filters[note][winespec]=winespec'
 
   def url_document(page_number = 1)
@@ -59,8 +59,8 @@ class ScrapWine
         output['price'.to_sym] = price.to_i
         output['available'.to_sym] = doc.search('.stock').last.text
         output['wine_description'.to_sym] = wine_description.to_s
-        # output['rating'.to_sym] = rating_average(notes_avis_expert)
-        output['rating'.to_sym] = notes_avis_expert
+        output['rating'.to_sym] = rating_average(notes_avis_expert)
+        #output['rating'.to_sym] = notes_avis_expert
         output['wine_url'.to_sym] = url
         output['wine_img'.to_sym] = "https://static2.wineandco.com/themes/wineandco/images/produits/#{url.split('-')[-4].chars.join('/')[0...-1]}grd#{url.split('-')[-4]}.jpg"
         output['wine_img_small'.to_sym] = img_small

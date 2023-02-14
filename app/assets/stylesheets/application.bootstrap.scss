@@ -1,6 +1,11 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500|Roboto:300,400');
 
 @import "wine/index";
+@import "wine/show";
 @import "components/slider";
 @import "components/winetable";
+
+// General style
+$font-family-sans-serif:'Montserrat', sans-serif;

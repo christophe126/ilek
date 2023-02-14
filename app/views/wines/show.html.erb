@@ -1,2 +1,38 @@
-<h1>Wines#show</h1>
-<p>Find me in app/views/wines/show.html.erb</p>
+<%= render 'shared/nav_bar' %>
+<section id="show-wine"class="d-md-flex">
+  <div class="container">
+  <div class="back" ><%= link_to 'Retour', 'javascript:history.back()', class: "back show-pays" %></div>
+    <div class="row">
+      <div class="col-md-12 col-lg-6 text-center mb-3"><%= image_tag @wine.wine_img, width: 400, height: 325 %></div>
+      <div class="col-md-12 col-lg-6">
+        <div><h2><%=@wine.name%></h2></div>
+        <div><p><span class="show-pays"><%=@wine.region%>, </span><span class="show-region"><%=@wine.domaine%></span></p></div>
+        <div class="d-flex align-items-center align-content-center mt-4">
+            <p class="show-expert-lib">NOTE DES EXPERTS :</p>
+            <span class="d-flex show-bg-note">
+              <%= image_tag "Star.svg"%>
+              <h3 style="margin-bottom: 0px;margin-left: 7px;"><%=@wine.rating%> / 100</h3>
+            </span>
+        </div>
+        <div><p class="show-price"><%= @wine.price %> €</p></div>
+        <div class="d-flex"><span><%= image_tag "available.svg" %></span><p class="show-available"><%=@wine.available%></p></div>
+        <div><p><span class="show-available show-vente"><%= link_to "voir la vente", @wine.wine_url, target: "_blank", class: "link-v" %></span></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="wine-details">
+  <div class="container">
+  <h4>LES CARACTERISTIQUES DU VIN</h4>
+    <div class="row d-flex flex-row ">
+      <% @key_val_to_display.each do |detail_wine| %>
+        <% unless detail_wine[1].nil?  %>
+          <div class="col-md-6 d-flex align-items-center align-content-center justify-content-between pr-2 wine-details-marginr">
+              <p class="wine-details-lib"><%= detail_wine[0].gsub("_"," ").gsub("da", "d'a").capitalize %></p>
+              <p class="wine-details-val"><%= detail_wine[1] %></p>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</section>

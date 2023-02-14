@@ -1,0 +1,139 @@
+
+#show-wine{
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+
+.back{
+  text-align: right;
+  margin-bottom: 40px;
+  text-decoration: none;
+}
+
+#show-wine h2{
+  color: #C62525;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 40px;
+  margin-top: 10px;
+}
+
+.show-region{
+  color: #1879A3;
+  font-size: 17px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 20px;
+  margin: 0px;
+}
+.show-pays{
+  color: #000;
+  font-size: 17px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 20px;
+  margin: 0px;
+}
+.show-expert-lib{
+  color: #000;
+  font-size: 24px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 20px;
+  margin-right: 30px;
+  margin-bottom: 0px;
+}
+
+.show-bg-note{
+  padding: 20px;
+  background: #AF0D1A;
+  color: #FFF;
+  //background: #FFFBFB;
+  border: 1px solid #E6ECF0;
+  border-radius: 19px;
+}
+
+.show-price{
+  color: #1879A3;
+  font-size: 24px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 20px;
+  margin-bottom: 0px;
+}
+
+.show-available{
+  color: #000;
+  font-size: 13px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 25px;
+  margin-bottom: 40px;
+  margin-left: 5px;
+}
+
+.show-vente{
+  text-decoration: none;
+  background-color: #E6ECF0;
+  text-align: center;
+  padding: 6px 15px;
+  border-radius: 5px;
+  border: 1px solid #E6ECF0;
+}
+
+.link-v  {
+  text-decoration: none !important;
+  color:#000;
+}
+.link-v:hover  {
+  color: #C62525;
+  text-decoration: none !important;
+}
+.link-v:visited  {
+  color: #C62525;
+  text-decoration: none !important;
+}
+
+
+//------------------- SECTION wine-details ------------------//
+
+#wine-details {
+  background-color: #F9F9F9;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-size: 17px;
+}
+#wine-details h4 {
+  color: #C62525;
+  font-size: 22px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 50px;
+  margin-bottom: 10px;
+}
+
+.wine-details-marginr{
+  padding-right: 20px;
+  padding-left: 20px;
+  border-bottom: 1px solid #E6ECF0;
+  padding-top: 11px;
+  padding-bottom: 11px;
+}
+
+.wine-details-val{
+  color: #1879A3;
+  font-size: 13px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 20px;
+  margin: 0px;
+}
+
+.wine-details-lib{
+  color: #000000;
+  font-size: 13px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 20px;
+  margin: 0px;
+}
