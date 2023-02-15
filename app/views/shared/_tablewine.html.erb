@@ -1,42 +1,41 @@
 <div class="container">
-  <H3 class="text-center">LES RESULTATS DE VOTRE RECHERCHE</H3>
+  <p id="result-search">LES RESULTATS DE VOTRE RECHERCHE POUR " <%= params[:query].upcase if params[:query]%> "</p>
   <div class="table-responsive mt-5">
     <table class="table">
       <thead>
-        <tr class="table-header">
-          <th style="width: 95px"></th>
-          <th>Couleur</th>
-          <th>Nom</th>
-          <th class="text-center">Fiche</th>
-          <th class="text-center">Note</th>
-          <th class="text-center"><strong>Millésime</strong></th>
-          <th class="text-center">Prix</th>
+        <tr>
+          <th class="table-img"></th>
+          <th class="table-header text-left">Couleur</th>
+          <th class="table-header text-left">Nom</th>
+          <th class="table-header text-center">Fiche</th>
+          <th class="table-header text-center">Note</th>
+          <th class="table-header text-center">Millésime</th>
+          <th class="table-header text-center">Prix</th>
         </tr>
       </thead>
       <tbody>
         <% @wines.each do |wine| %>
-            <tr style="margin-top: 0px;padding-top: 0px;">
-              <td><%= image_tag wine.wine_img_small, width: 95, height: 85 %></td>
-              <td class="table-couleur"><%= wine.couleur %></td>
-                <td>
-                    <p class="table-name-p"><%= wine.name %></p>
-                    <p class="table-domaine-p" style="margin-bottom: 0px;"><%= wine.domaine %></p>
-                    <p class="table-region-p">Région : <%= wine.region %></p>
-                </td>
-              <td class="table-note">
-                <%= link_to wine_path(wine) do%>
-                  <%= image_tag "more_details.svg" %>
-                <% end %>
-
+          <tr>
+            <td class="table-img" ><%= image_tag wine.wine_img_small, width: 95, height: 85 %></td>
+            <td class="table-couleur"><%= wine.couleur %></td>
+              <td>
+                <p class="table-couleur"><%= wine.name %></p>
+                <p class="table-domaine-p" style="margin-bottom: 0px;"><%= wine.domaine %></p>
+                <p class="table-region-p">Région : <%= wine.region %></p>
               </td>
-              <td class="table-note"><%= wine.rating %></td>
-              <td class="text-center">
-                  <div>
-                      <p class="table-millesime"><%= wine.millesime %></p>
-                  </div>
-              </td>
-              <td class="table-millesime"><%= wine.price %></td>
-            </tr>
+            <td class="text-center">
+              <%= link_to wine_path(wine) do%>
+                <%= image_tag "more_details.svg" %>
+              <% end %>
+            </td>
+            <td class="table-note"><%= wine.rating %></td>
+            <td class="text-center">
+              <div>
+                  <p class="table-couleur text-center"><%= wine.millesime %></p>
+              </div>
+            </td>
+            <td class="table-couleur text-center"><%= wine.price %></td>
+          </tr>
         <% end %>
       </tbody>
     </table>

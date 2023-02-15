@@ -1,43 +1,49 @@
+
+#result-search{
+  color: #000;
+  font-size: 20px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 24px;
+  margin-bottom: 1px;
+  margin-top: 0px;
+  text-align: center;
+}
+
+.table-img{
+  width: 85px
+}
+
+.table-header{
+  color: #000000;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 24px;
+}
+
 .table-couleur {
   color: #000;
   font-size: 17px;
-  font-weight: 500;
+  font-weight: 400;
   font-style: normal;
   line-height: 24px;
   margin-bottom: 1px;
   margin-top: 0px;
   text-align: left;
+  padding-left: 0px;
 }
-.table-millesime {
-  color: #000;
-  font-size: 17px;
-  font-weight: 500;
-  font-style: normal;
-  line-height: 24px;
-  margin-bottom: 1px;
-  margin-top: 0px;
-  text-align: center;
-}
+
 
 .table-note {
   color: #C62525;
   font-size: 17px;
-  font-weight: 500;
+  font-weight: 400;
   font-style: normal;
   line-height: 24px;
   margin-bottom: 1px;
   margin-top: 0px;
   text-align: center;
-}
-
-.table-name-p {
-  color: #000000;
-  font-size: 17px;
-  font-weight: 500;
-  font-style: normal;
-  line-height: 24px;
-  margin-bottom: 1px;
-  margin-top: 0px;
 }
 
 .table-domaine-p {
@@ -54,12 +60,4 @@
   font-weight: 400;
   font-style: normal;
   line-height: 22px;
-}
-
-.table-header {
-  color: #000000;
-  font-size: 15px;
-  font-weight: 500;
-  font-style: normal;
-  line-height: 20px;
 }
