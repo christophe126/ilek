@@ -4,7 +4,17 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
    static targets = ["minvalue", "maxvalue", "input"]
   connect() {
-      // console.log("Hello wine slider!");
+    //console.log(window.location.href);
+    let url = new URL(window.location.href);
+    if (url.search) {
+      let pmin = url.searchParams.get("pxmin");
+      let pmax = url.searchParams.get("pxmax");
+      this.minvalueTarget.innerText = pmin + " €";
+      this.maxvalueTarget.innerText = pmax + " €";
+      this.inputTargets[0].value = pmin;
+      this.inputTargets[1].value = pmax;
+    }
+    console.log(url.search);
   }
 
   updatePrice(e) {

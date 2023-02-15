@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
 require 'uri'
+require 'debug'
 
 class ScrapWine
  # https://www.wineandco.com/search?pageNumber=1&filters[color][5]=5&filters[note][bettane]=bettane&filters[note][decanter]=decanter&filters[note][rvf]=rvf&filters[note][parker]=parker&filters[note][winespec]=winespec
@@ -79,11 +80,11 @@ class ScrapWine
 
   def rating_average(notes)
     # ["16/20", "92/100", "89/100", "92/100", "92/100"]
-    # ["93/100", "17/20", "93/100", "91-92/100", "94/100", "91/100", "90/100", "78.75/20", "16/20"]
+    # ["94-95/100", "91-93/100", "90-93/100", "94-96/100", "83.75/20"]
     nb_notes = notes.count
     n = 0
     notes.each do |note|
-      if note.split('/')[1][0..1].to_i != 100
+      if note.split('/')[1][0..1].to_i != 100 && ( note.split('/')[0][0..1].to_i <= note.split('/')[1][0..1].to_i)
         n += (note.split('/')[0].to_i * 100) / note.split('/')[1].to_i
       else
         n += note.split('/')[0].to_i
