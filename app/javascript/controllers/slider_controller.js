@@ -14,8 +14,8 @@ export default class extends Controller {
       this.inputTargets[0].value = pmin;
       this.inputTargets[1].value = pmax;
     }
-    console.log(url.search);
   }
+
 
   updatePrice(e) {
     let arraySave = [];
@@ -34,4 +34,5 @@ export default class extends Controller {
     this.minvalueTarget.innerText = minPrice + " €";
     this.maxvalueTarget.innerText = maxPrice + " €";
   }
+
 }

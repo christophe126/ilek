@@ -1,0 +1,33 @@
+<% if @wines.size.zero? %>
+  <section id="top3">
+    <div class="container">
+      <h2>LA SELECTION DES EXPERTS</h2>
+      <div class="row">
+        <% @top_three.each do |top| %>
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <div id="card-id" class="card-body">
+                <p class="text-center top-domaine"><%= top.domaine %></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div><%= image_tag top.wine_img_small, width: 220 , height: 169 %></div>
+                  <div class="d-flex flex-column justify-content-center align-items-center align-content-center medal">
+                    <div><%= image_tag "medal.svg", width: 40 , height: 40  %></div>
+                    <div>
+                        <p class="top-note"><%= top.rating %></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex flex-column">
+                  <p id="top-name"><span class="top-name"><%= top.name %></span></p>
+                  <p class="top-region">Région : <%= top.region  %></p>
+                  <p class="top-price"><%= top.price  %> €</p>
+                  <div class="d-flex justify-content-center"><span><%= image_tag "available.svg" %></span><p class="top-available"><%=top.available%></p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+<% end %>

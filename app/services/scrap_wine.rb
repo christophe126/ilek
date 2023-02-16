@@ -10,7 +10,7 @@ class ScrapWine
   URL           = 'https://www.wineandco.com/search?'
   FILTER_PAGE   = 'pageNumber='
   # FILTER_COLOR  = '&filters[color][6]=6&filters[color][10]=10&filters[color][5]=5&filters[color][1]=1'
-  # filtre Rosé
+  # filter 1:RED, 5:ROSE, 6:BLANC 9:SPIRITUEUX,
   FILTER_COLOR  = '&filters[color][6]=6'
   FILTER_NOTES  = '&filters[note][bettane]=bettane&filters[note][decanter]=decanter&filters[note][rvf]=rvf&filters[note][parker]=parker&filters[note][winespec]=winespec'
 
@@ -84,7 +84,7 @@ class ScrapWine
     nb_notes = notes.count
     n = 0
     notes.each do |note|
-      if note.split('/')[1][0..1].to_i != 100 && ( note.split('/')[0][0..1].to_i <= note.split('/')[1][0..1].to_i)
+      if note.split('/')[1][0..-1].to_i != 100 && ( note.split('/')[0][0..1].to_i <= note.split('/')[1][0..1].to_i)
         n += (note.split('/')[0].to_i * 100) / note.split('/')[1].to_i
       else
         n += note.split('/')[0].to_i

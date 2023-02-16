@@ -1,45 +1,47 @@
 <div class="container">
   <% if !@wines.size.zero? %>
-  <p id="result-search"><%= pluralize @wines.size, "Résultat" %> pour " <%= params[:query] if params[:query]%> "</p>
-  <div class="table-responsive mt-5">
-    <table class="table">
-      <thead>
-        <tr>
-          <th class="table-img"></th>
-          <th class="table-header text-left">Couleur</th>
-          <th class="table-header text-left">Nom</th>
-          <th class="table-header text-center">Fiche</th>
-          <th class="table-header text-center">Note</th>
-          <th class="table-header text-center">Millésime</th>
-          <th class="table-header text-center">Prix</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @wines.each do |wine| %>
+    <p id="result-search" class="table_margin_center mt-5"><span class="bg-result"><%= pluralize @wines.total_count, "Résultat" %> pour " <%= params[:query] if params[:query]%> "</span></p>
+    <p><%= paginate @wines, left: 3, right: 3, class: "pagine" %></p>
+    <div class="table-responsive mt-5">
+      <table class="table">
+        <thead>
           <tr>
-            <td class="table-img" ><%= image_tag wine.wine_img_small, width: 95, height: 85 %></td>
-            <td class="table-couleur"><%= wine.couleur %></td>
-              <td>
-                <p class="table-couleur"><%= wine.name %></p>
-                <p class="table-domaine-p" style="margin-bottom: 0px;"><%= wine.domaine %></p>
-                <p class="table-region-p">Région : <%= wine.region %></p>
-              </td>
-            <td class="text-center">
-              <%= link_to wine_path(wine) do%>
-                <%= image_tag "more_details.svg" %>
-              <% end %>
-            </td>
-            <td class="table-note"><%= wine.rating %></td>
-            <td class="text-center">
-              <div>
-                  <p class="table-couleur text-center"><%= wine.millesime %></p>
-              </div>
-            </td>
-            <td class="table-couleur text-center"><%= wine.price %></td>
+            <th class="table-img"></th>
+            <th class="table-header table-weight-style-height-24 text-left">Couleur</th>
+            <th class="table-header table-weight-style-height-24 text-left">Nom</th>
+            <th class="table-header table-weight-style-height-24 text-center">Fiche</th>
+            <th class="table-header table-weight-style-height-24 text-center">Note</th>
+            <th class="table-header table-weight-style-height-24 text-center">Millésime</th>
+            <th class="table-header table-weight-style-height-24 text-center">Prix</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+        </thead>
+        <tbody>
+          <% @wines.each do |wine| %>
+            <tr>
+              <td class="table-img" ><%= image_tag wine.wine_img_small, width: 95, height: 85 %></td>
+              <td class="table-couleur table_margin_left table-weight-style-height-24"><%= wine.couleur %></td>
+                <td>
+                  <p class="table-couleur table_margin_left table-weight-style-height-24"><%= wine.name %></p>
+                  <p class="table-domaine-p table-weight-style-height"><%= wine.domaine %></p>
+                  <p class="table-region-p table-weight-style-height">Région : <%= wine.region %></p>
+                </td>
+              <td class="text-center">
+                <%= link_to wine_path(wine) do%>
+                  <%= image_tag "more_details.svg" %>
+                <% end %>
+              </td>
+              <td class="table-note table_margin_center table-weight-style-height-24"><%= wine.rating %></td>
+              <td class="text-center">
+                <div>
+                    <p class="table-couleur table-weight-style-height-24 table_margin_center"><%= wine.millesime %></p>
+                </div>
+              </td>
+              <td class="table-couleur table_margin_center"><%= wine.price %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <p class=""><%= paginate @wines, left: 3, right: 3, class: "pagine" %></p>
   <% end %>
 </div>

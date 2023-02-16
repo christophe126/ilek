@@ -4,8 +4,10 @@
 
 @import "wine/index";
 @import "wine/show";
+@import "components/form_search_wine";
 @import "components/slider";
 @import "components/winetable";
+@import "components/top_three";
 
 // General style
 $font-family-sans-serif:'Montserrat', sans-serif;

@@ -13,14 +13,20 @@ class WinesController < ApplicationController
                 .where(sql_query, query: "%#{params[:query]}%")
                 .where('price_cents BETWEEN ? and ?', params[:pxmin].to_i * 100, params[:pxmax].to_i * 100)
                 .order(rating: :desc)
+                .page params[:page]
     else
       @wines = ''
+      rand_number = rand(1..Wine.count)
+      @top_three = Wine.limit(3).offset(rand_number)
+
     end
   end
 
   def show
     @wine = Wine.find(params[:id])
-    @caracteristique = ["domaine", "pays", "region", "couleur", "millesime", "appellation", "culture", "cepages", "degre_dalcool", "temperature_de_service", "boire_ou_garder", "classement" ]
+    @caracteristique =
+      %w[ domaine pays region couleur millesime appellation culture cepages
+          degre_dalcool temperature_de_service boire_ou_garder classement]
     @key_val_to_display = []
     @transform_obj_to_hash = JSON.parse(@wine.to_json)
     @caracteristique.each do |k|

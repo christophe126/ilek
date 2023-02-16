@@ -1,0 +1,75 @@
+#top3 {
+  background: url("bgk_bottom.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+#top3 h2 {
+  padding-top: 16px;
+  padding-bottom: 35px;
+  text-align: center;
+  font-size: 29px;
+}
+
+#card-id{
+  padding: 17px;
+
+}
+
+.medal{
+  padding-right: 69px
+}
+
+.top-domaine{
+  color: #C62525;
+  font-size: 17px;
+  line-height: 20px;
+  margin: 0px;
+  font-weight: 500;
+  font-style: normal;
+  padding-bottom: 15px;
+}
+.top-region{
+  color: #C62525;
+  font-size: 17px;
+  line-height: 20px;
+  margin: 0px;
+  font-weight: 400;
+  font-style: normal;
+}
+#top-name{
+  margin: 0px;
+  height: 65px;
+}
+#top-name span {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.top-note{
+  text-align: center;
+  color: #C62525;
+  font-size: 22px;
+  line-height: 20px;
+  margin-top: 10px;
+}
+
+.top-price{
+  margin-top: 20px;
+  margin-bottom: 0px;
+  text-align: center;
+  color: #1879A3;
+  font-size: 22px;
+  line-height: 20px;
+}
+
+.top-available{
+  color: #9E9E9E;
+  font-size: 13px;
+  line-height: 25px;
+  margin-bottom: 40px;
+  margin-left: 5px;
+  text-align: center;
+}
