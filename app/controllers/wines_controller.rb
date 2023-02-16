@@ -16,10 +16,11 @@ class WinesController < ApplicationController
                 .page params[:page]
     else
       @wines = ''
-      rand_number = rand(1..Wine.count)
-      @top_three = Wine.limit(3).offset(rand_number)
 
     end
+
+    rand_number = rand(1..Wine.count)
+    @top_three = Wine.limit(3).offset(rand_number)
   end
 
   def show

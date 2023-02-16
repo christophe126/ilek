@@ -10,8 +10,26 @@
   text-decoration: none;
 }
 .back a {
+
+  background-color: #C62525;
+  color: #FFFFFF;
+  margin-right: 10px;
+  border-radius: 4px;
+  padding-left: 9px;
+  padding-right: 9px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 12px;
   text-decoration: none;
 }
+
+.back a:hover {
+  background-color: #1879A3;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+
 
 
 #show-wine h2{
