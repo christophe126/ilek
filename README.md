@@ -26,7 +26,7 @@ Things you may want to cover:
 * Cloner le projet à partir de l'adresse :
 https://github.com/christophe126/ilek
 
-* Une fois le projet deployer localement, il faut initialliser la base de données :
+* Une fois le projet deployé localement, il faut initialliser la base de données :
 rails db:create
 rails db:migrate
 
