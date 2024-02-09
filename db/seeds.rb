@@ -32,7 +32,7 @@ unless number_of_pages.zero?
   datas.each_with_index do |data, index|
     i = Wine.new(data)
     i.valid? ? i.save : "Wine: #{i.sku_id} not saved"
-    puts "#{index+1}/#{datas.count} : #{i.name} " if i.valid?
+    puts "#{index + 1}/#{datas.count} : #{i.name} " if i.valid?
   end
 end
 

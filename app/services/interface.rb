@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+#----------------- VOIR SEED -------------------
+
 require_relative 'scrap_wines'
 
 RESULT_PER_PAGE = 30

@@ -81,6 +81,7 @@ class ScrapWine
   def rating_average(notes)
     # ["16/20", "92/100", "89/100", "92/100", "92/100"]
     # ["94-95/100", "91-93/100", "90-93/100", "94-96/100", "83.75/20"]
+    # (20 !=100 && 16<=100) => 16 * 100 / 20 sinon 20
     nb_notes = notes.count
     n = 0
     notes.each do |note|
